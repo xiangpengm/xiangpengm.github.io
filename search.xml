@@ -12,28 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[使用Hexo搭建个人博客-插件安装及配置]]></title>
-    <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[使用Hexo搭建个人博客-配置]]></title>
-    <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[12345678|---db.json|-- node_modules|-- package.json|-- public|-- scaffolds|-- source|-- themes|-- yarn.lock]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[使用Hexo搭建个人博客-安装站点]]></title>
     <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E5%AE%89%E8%A3%85%E7%AB%99%E7%82%B9%2F</url>
     <content type="text"><![CDATA[初始化站点运行hexo init &quot;folder_test&quot;命令即可初始化一个hexo静态网站，运行日志如下 123456789101112131415161718192021222324252627INFO Cloning hexo-starter to ~/Desktop/temp/testCloning into &apos;/Users/xiangpeng/Desktop/temp/test&apos;...remote: Enumerating objects: 3, done.remote: Counting objects: 100% (3/3), done.remote: Compressing objects: 100% (3/3), done.remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 68Unpacking objects: 100% (71/71), done.Submodule &apos;themes/landscape&apos; (https://github.com/hexojs/hexo-theme-landscape.git) registered for path &apos;themes/landscape&apos;Cloning into &apos;/Users/xiangpeng/Desktop/temp/test/themes/landscape&apos;...remote: Enumerating objects: 8, done. remote: Counting objects: 100% (8/8), done. remote: Compressing objects: 100% (8/8), done. remote: Total 885 (delta 1), reused 5 (delta 0), pack-reused 877 Receiving objects: 100% (885/885), 2.55 MiB | 16.00 KiB/s, done.Resolving deltas: 100% (464/464), done.Submodule path &apos;themes/landscape&apos;: checked out &apos;73a23c51f8487cfcd7c6deec96ccc7543960d350&apos;INFO Install dependenciesyarn install v1.13.0info No lockfile found.[1/4] 🔍 Resolving packages...warning hexo &gt; titlecase@1.1.2: no longer maintained[2/4] 🚚 Fetching packages...[3/4] 🔗 Linking dependencies...[4/4] 🔨 Building fresh packages...success Saved lockfile.✨ Done in 23.58s.INFO Start blogging with Hexo! 站点目录结构在生成的站点目录中有如下文件及子文件夹 1234567|-- _config.yml # 网站的主配置文件|-- node_modules # nodejs 依赖包的本地安装目录|-- package.json # npm(nodejs package manager) 依赖的配置文件|-- scaffolds # 网站页面模板文件存放目录|-- public # 生成的静态网站存放目录(初始话时没有此目录，只有在运行 hexo generate时才会生成)|-- source # 文章存放目录|-- yarn.lock # yarn(一个与npm相似的包管理攻击) 依赖的配置文件 生成页面和启动预览我们在生成的站点的根目录运行hexo g即可生成静态页面，这时运行hexo s可在本地打开一个预览web服务器来查看站点的效果站点的默认站点为http://localhost:4000。 123cd "folder_test" # 进入测试目录hexo g # 同 hexo generate 生成hexo静态页面(public 目录下)hexo s # 同 hexo server 启动hexo自带的web服务器预览页面]]></content>
