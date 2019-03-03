@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用Hexo搭建个人博客-使用github page部署]]></title>
+    <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%BD%BF%E7%94%A8github-page%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[github pagegithub平台为用户提供了一个方便的工具来存放用户的静态页面username.github.io，并且很方便的进行版本管理。 准备工作 生成ssh密钥，详见链接 注册github账户, 并 填写主配置文件查看上文中的网站主配置并编写deploy选项 123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: git@github.com:xiangpengm/xiangpengm.github.io.git # 用户仓库地址 branch: master # 使用分枝 进行第一次提交提交有两种方式 hexo g &amp;&amp; hexo d hexo g -d]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用Hexo搭建个人博客-插件安装及配置]]></title>
     <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"></content>
@@ -23,9 +34,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[使用Hexo搭建个人博客-安装]]></title>
-    <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[根据前面的使用我们已经可以使用hexo-cli工具来创建Hexo页面 初始化页面运行一下命令即可初始化一个hexo页面hexo init &quot;folder_test&quot; 生成页面和启动预览123cd &quot;folder_test&quot; # 进入测试目录hexo g : # 生成hexo静态页面(public 目录下)hexo s: # 启动hexo自带的web服务器预览页面]]></content>
+    <title><![CDATA[使用Hexo搭建个人博客-安装站点]]></title>
+    <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E5%AE%89%E8%A3%85%E7%AB%99%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[初始化站点运行hexo init &quot;folder_test&quot;命令即可初始化一个hexo静态网站，运行日志如下 123456789101112131415161718192021222324252627INFO Cloning hexo-starter to ~/Desktop/temp/testCloning into &apos;/Users/xiangpeng/Desktop/temp/test&apos;...remote: Enumerating objects: 3, done.remote: Counting objects: 100% (3/3), done.remote: Compressing objects: 100% (3/3), done.remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 68Unpacking objects: 100% (71/71), done.Submodule &apos;themes/landscape&apos; (https://github.com/hexojs/hexo-theme-landscape.git) registered for path &apos;themes/landscape&apos;Cloning into &apos;/Users/xiangpeng/Desktop/temp/test/themes/landscape&apos;...remote: Enumerating objects: 8, done. remote: Counting objects: 100% (8/8), done. remote: Compressing objects: 100% (8/8), done. remote: Total 885 (delta 1), reused 5 (delta 0), pack-reused 877 Receiving objects: 100% (885/885), 2.55 MiB | 16.00 KiB/s, done.Resolving deltas: 100% (464/464), done.Submodule path &apos;themes/landscape&apos;: checked out &apos;73a23c51f8487cfcd7c6deec96ccc7543960d350&apos;INFO Install dependenciesyarn install v1.13.0info No lockfile found.[1/4] 🔍 Resolving packages...warning hexo &gt; titlecase@1.1.2: no longer maintained[2/4] 🚚 Fetching packages...[3/4] 🔗 Linking dependencies...[4/4] 🔨 Building fresh packages...success Saved lockfile.✨ Done in 23.58s.INFO Start blogging with Hexo! 站点目录结构在生成的站点目录中有如下文件及子文件夹 1234567|-- _config.yml # 网站的主配置文件|-- node_modules # nodejs 依赖包的本地安装目录|-- package.json # npm(nodejs package manager) 依赖的配置文件|-- scaffolds # 网站页面模板文件存放目录|-- public # 生成的静态网站存放目录(初始话时没有此目录，只有在运行 hexo generate时才会生成)|-- source # 文章存放目录|-- yarn.lock # yarn(一个与npm相似的包管理攻击) 依赖的配置文件 生成页面和启动预览我们在生成的站点的根目录运行hexo g即可生成静态页面，这时运行hexo s可在本地打开一个预览web服务器来查看站点的效果站点的默认站点为http://localhost:4000。 123cd "folder_test" # 进入测试目录hexo g # 同 hexo generate 生成hexo静态页面(public 目录下)hexo s # 同 hexo server 启动hexo自带的web服务器预览页面]]></content>
       <categories>
         <category>hexo</category>
       </categories>
@@ -36,7 +47,7 @@
   <entry>
     <title><![CDATA[使用Hexo搭建个人博客-准备]]></title>
     <url>%2F2019%2F02%2F25%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E5%87%86%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[Hexo一款基于javascript的静态网页生成工具， 使用方便快捷易于操作。 优势 支持一件部署 支持git平台 有大量的插件和主题可供选择 安装前准备(仅以Mac为例) git 使用 Homebrewbrew install git node 使用 Homebrew,brew install node 安装npm install -g hexo-cli 参考链接 https://hexo.io/zh-cn/docs/]]></content>
+    <content type="text"><![CDATA[Hexo一款基于javascript的静态网页生成工具， 使用方便快捷易于操作。 优势 支持一件部署 支持git平台 有大量的插件和主题可供选择 安装前准备(仅以Mac为例) git 使用 Homebrewbrew install git node 使用 Homebrew,brew install node 安装npm install -g hexo-cli 配置文件须知配置文件使用的是yaml格式文件 YAML 参考链接 https://hexo.io/zh-cn/docs/https://www.jianshu.com/p/97222440cd08]]></content>
       <categories>
         <category>hexo</category>
       </categories>
