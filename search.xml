@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[使用Hexo搭建个人博客-使用github page部署]]></title>
     <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%BD%BF%E7%94%A8github-page%E9%83%A8%E7%BD%B2%2F</url>
-    <content type="text"><![CDATA[github pagegithub平台为用户提供了一个方便的工具来存放用户的静态页面username.github.io，并且很方便的进行版本管理。 准备工作 生成ssh密钥，详见链接生成SSH密钥 注册github账户, 并创建 username.github.io仓库 填写主配置文件查看上文中的网站主配置并编写deploy选项123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: git@github.com:xiangpengm/xiangpengm.github.io.git # 用户仓库地址 branch: master # 使用分枝 进行第一次提交提交有两种方式 hexo g &amp;&amp; hexo d hexo g -d]]></content>
+    <content type="text"><![CDATA[github pagegithub平台为用户提供了一个方便的工具来存放用户的静态页面username.github.io，并且很方便的进行版本管理。 准备工作 生成ssh密钥，详见链接生成SSH密钥 注册github账户, 并创建 username.github.io仓库 填写主配置文件查看上文中的网站主配置并编写deploy选项123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: git@github.com:username/username.github.io.git # 用户仓库地址 branch: master # 使用分枝 进行第一次提交提交有两种方式 hexo g &amp;&amp; hexo d hexo g -d]]></content>
       <categories>
         <category>hexo</category>
       </categories>
