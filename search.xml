@@ -3,12 +3,21 @@
   <entry>
     <title><![CDATA[使用Hexo搭建个人博客-主题样式调整及插件配置]]></title>
     <url>%2F2019%2F03%2F06%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[Hexo 主题样式Next 有四种页面布局可供选择在_config.yml, 选择一种自己喜欢的布局即可 123456789# ---------------------------------------------------------------# Scheme Settings# ---------------------------------------------------------------# Schemesscheme: Mist# scheme: Muse# scheme: Pisces# scheme: Gemini 开启tag与categories页面使用hexo new page tags创建tags标签，这时在source目录下会生成tags目录, 修改tags目录下的index.md的font matter tape: tags, 即可开启标签归类页面 1234title: tagsdate: 2019-02-26 22:50:39type: tagscomments: false categories 页面同tags 开启插件搜索插件, 站内搜索插件gitalk, 评论插件busuanzi, 访问量统计]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[使用Hexo搭建个人博客-主题安装-Next]]></title>
     <url>%2F2019%2F03%2F03%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85-Next%2F</url>
     <content type="text"><![CDATA[Hexo主题Hexo拥有众多的主题可以选择, 用户可以自行选择自己喜欢的主题, 其中笔者比较喜欢的一款主题是Next, 下面就已Next主题为例说明Hexo主题的安装及配置 主题安装找到需要的主题地址https://github.com/theme-next/hexo-theme-next, 执行以下命令即可安装next主题 12cd 'folder_test' # 进入hexo安装的根目录git clone https://github.com/theme-next/hexo-theme-next themes/next 主题目录结构12345678910111213├── LICENSE.md├── README.md├── _config.yml # 主题配置文件, 后面配置只需要用到这个文件├── bower.json├── crowdin.yml├── docs├── gulpfile.coffee├── languages├── layout├── package.json├── scripts├── source└── test 修改主题为Next进入hexo安装根目录编辑主配置文件_config.yml, 把theme修改为next即可. 修改部分 1234# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: next 目录结构 1234567|-- _config.yml # 网站的主配置文件|-- node_modules # nodejs 依赖包的本地安装目录|-- package.json # npm(nodejs package manager) 依赖的配置文件|-- scaffolds # 网站页面模板文件存放目录|-- public # 生成的静态网站存放目录(初始话时没有此目录，只有在运行 hexo generate时才会生成)|-- source # 文章存放目录|-- yarn.lock # yarn(一个与npm相似的包管理攻击) 依赖的配置文件 预览 123# 启动预览hexo ghexo s]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
       </tags>
