@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用Hexo搭建个人博客-主题安装-Next]]></title>
+    <url>%2F2019%2F03%2F03%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85-Next%2F</url>
+    <content type="text"><![CDATA[Hexo主题Hexo拥有众多的主题可以选择, 用户可以自行选择自己喜欢的主题, 其中笔者比较喜欢的一款主题是Next, 下面就已Next主题为例说明Hexo主题的安装及配置 主题安装找到需要的主题地址https://github.com/theme-next/hexo-theme-next, 执行以下命令即可安装next主题 12cd 'folder_test' # 进入hexo安装的根目录git clone https://github.com/theme-next/hexo-theme-next themes/next 主题目录结构12345678910111213├── LICENSE.md├── README.md├── _config.yml # 主题配置文件, 后面配置只需要用到这个文件├── bower.json├── crowdin.yml├── docs├── gulpfile.coffee├── languages├── layout├── package.json├── scripts├── source└── test 修改主题为Next进入hexo安装根目录编辑主配置文件_config.yml, 把theme修改为next即可. 修改部分 1234# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: next 目录结构 1234567|-- _config.yml # 网站的主配置文件|-- node_modules # nodejs 依赖包的本地安装目录|-- package.json # npm(nodejs package manager) 依赖的配置文件|-- scaffolds # 网站页面模板文件存放目录|-- public # 生成的静态网站存放目录(初始话时没有此目录，只有在运行 hexo generate时才会生成)|-- source # 文章存放目录|-- yarn.lock # yarn(一个与npm相似的包管理攻击) 依赖的配置文件 预览 123# 启动预览hexo ghexo s]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用Hexo搭建个人博客-使用github page部署]]></title>
     <url>%2F2019%2F02%2F26%2F%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E4%BD%BF%E7%94%A8github-page%E9%83%A8%E7%BD%B2%2F</url>
     <content type="text"><![CDATA[github pagegithub平台为用户提供了一个方便的工具来存放用户的静态页面username.github.io，并且很方便的进行版本管理。 准备工作 生成ssh密钥，详见链接生成SSH密钥 注册github账户, 并创建 username.github.io仓库 填写主配置文件查看上文中的网站主配置并编写deploy选项123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: git@github.com:username/username.github.io.git # 用户仓库地址 branch: master # 使用分枝 进行第一次提交提交有两种方式 hexo g &amp;&amp; hexo d hexo g -d]]></content>
