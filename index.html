@@ -424,7 +424,7 @@
                 
               
 
-              <time title="创建时间：2019-03-11 21:51:08 / 修改时间：22:48:26" itemprop="dateCreated datePublished" datetime="2019-03-11T21:51:08+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-11 21:51:08 / 修改时间：22:52:24" itemprop="dateCreated datePublished" datetime="2019-03-11T21:51:08+08:00">2019-03-11</time>
             
 
             
@@ -482,88 +482,19 @@
 
       
         
-          
-            <h1 id="C预处理器与宏"><a href="#C预处理器与宏" class="headerlink" title="C预处理器与宏"></a>C预处理器与宏</h1><p>这篇文章，将介绍C预处理器，你将学到#include，#define和条件编译。<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1g0z77jj6z5j30kk0b4wet.jpg" alt></p>
+          <h1 id="C预处理器与宏"><a href="#C预处理器与宏" class="headerlink" title="C预处理器与宏"></a>C预处理器与宏</h1><p>这篇文章，将介绍C预处理器，你将学到#include，#define和条件编译。<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1g0z77jj6z5j30kk0b4wet.jpg" alt></p>
 <p>C预处理器是一个宏处理器（允许你定义宏），它在编译之前转换程序。这些转换可以包含头文件，宏扩展等。</p>
 <p>所有的预处理指令都已#符号开始，例如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.14</span></span><br></pre></td></tr></table></figure>
-<p>C预处理器的常见用途是：</p>
-<h2 id="Including-Header-Files"><a href="#Including-Header-Files" class="headerlink" title="Including Header Files"></a>Including Header Files</h2><p>#include指令将头文件包含到C程序中，例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>在这里”stdio.h”是一个头文件。#include预处理程序指令将上面的行替换为包含函数和宏定义的stdio.h头文件的内容。</p>
-<p>这就是为什么在使用scanf（）和printf（）之类的函数之前需要使用#include &lt;stdio.h&gt;的原因。</p>
-<p>Visit this page to learn on using header files.</p>
-<h2 id="Macros-using-define"><a href="#Macros-using-define" class="headerlink" title="Macros using #define"></a>Macros using #define</h2><p>您可以使用#define预处理程序指令在C中定义宏。</p>
-<p>宏是一个给出名称的代码片段。您可以使用名称在程序中使用该代码片段。例如，</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> c 299792458  <span class="comment">// speed of light</span></span></span><br></pre></td></tr></table></figure>
-<p>在这里，当我们在程序中使用c时，它(PI)被替换为299792458。</p>
-<h3 id="Example-1-define-preprocessor"><a href="#Example-1-define-preprocessor" class="headerlink" title="Example 1: #define preprocessor"></a>Example 1: #define preprocessor</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> radius, area;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the radius: "</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;radius);</span><br><span class="line">    <span class="comment">// Notice, the use of PI</span></span><br><span class="line">    area = PI*radius*radius;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Area=%.2f"</span>,area);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>您还可以定义像函数调用一样工作的宏，称为类函数宏。例如，</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> circleArea(r) (3.1415*(r)*(r))</span></span><br></pre></td></tr></table></figure>
-<p>每次程序遇到circleArea（参数）时，它都被（3.1415 <em>（argument）</em>（argument））替换。</p>
-<p>假设，我们将5作为参数传递，然后扩展如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">circleArea(<span class="number">5</span>) <span class="function">expands <span class="title">to</span> <span class="params">(<span class="number">3.1415</span>*<span class="number">5</span>*<span class="number">5</span>)</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="Example-2-Using-define-preprocessor"><a href="#Example-2-Using-define-preprocessor" class="headerlink" title="Example 2: Using #define preprocessor"></a>Example 2: Using #define preprocessor</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> circleArea(r) (PI*r*r)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> radius;</span><br><span class="line">    <span class="keyword">float</span> area;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the radius: "</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;radius);</span><br><span class="line">    area = circleArea(radius);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Area = %.2f"</span>, area);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Conditional-Compilation"><a href="#Conditional-Compilation" class="headerlink" title="Conditional Compilation"></a>Conditional Compilation</h2><p>在C编程中，您可以指示预处理器是否包含某些代码。为此，可以使用条件指令。<br>它类似于if语句。但是，您需要了解一个很大的区别。</p>
-<p>在执行期间测试if语句以检查是否应该执行代码块，而条件用于在执行之前包含（或跳过）程序中的某些代码块。</p>
-<h3 id="Uses-of-Conditional"><a href="#Uses-of-Conditional" class="headerlink" title="Uses of Conditional"></a>Uses of Conditional</h3><ul>
-<li>根据机器，操作系统使用不同的代码</li>
-<li>在两个不同的程序中编译相同的源文件</li>
-<li>从程序中排除某些代码，但将其作为参考以备将来使用</li>
-</ul>
-<h3 id="How-to-use-conditional"><a href="#How-to-use-conditional" class="headerlink" title="How to use conditional?"></a>How to use conditional?</h3><p>要使用条件，请使用#ifdef，＃if，＃define，＃else和#elseif指令。</p>
-<p>#ifdef Directive</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MACRO</span></span><br><span class="line">     conditional codes</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>这里，仅当定义了MACRO时，条件代码才包含在程序中。</p>
-<p>#if, #elif and #else Directive</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> expression</span></span><br><span class="line">   conditional codes</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>这里，expression是整数类型的表达式（可以是整数，字符，算术表达式，宏等）。仅当表达式被计算为非零值时，条件代码才包含在程序中。</p>
-<p>可选的#else指令可以与#if指令一起使用。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> expression</span></span><br><span class="line">   conditional codes <span class="keyword">if</span> expression is non-zero</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">   conditional <span class="keyword">if</span> expression is <span class="number">0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>您还可以使用#elif将嵌套条件添加到#if … #else</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> expression</span></span><br><span class="line">   conditional codes <span class="keyword">if</span> expression is non-zero</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> expression1</span></span><br><span class="line">    conditional codes <span class="keyword">if</span> expression is non-zero</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> expression2</span></span><br><span class="line">    conditional codes <span class="keyword">if</span> expression is non-zero</span><br><span class="line">... .. ...</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   conditional <span class="keyword">if</span> all expressions are <span class="number">0</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-<h3 id="defined"><a href="#defined" class="headerlink" title="#defined"></a>#defined</h3><p>特殊运算符#defined用于测试是否定义了某个宏。它通常与#if指令一起使用。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined BUFFER_SIZE &amp;&amp; BUFFER_SIZE &gt;= 2048</span></span><br><span class="line">  conditional codes</span><br></pre></td></tr></table></figure>
-<h2 id="Predefined-Macros"><a href="#Predefined-Macros" class="headerlink" title="Predefined Macros"></a>Predefined Macros</h2><p>有一些预定义的宏可以很容易地用于C编程。</p>
-<table>
-<thead>
-<tr>
-<th>Predefined macro</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>__DATE__</td>
-<td>String containing the current date</td>
-</tr>
-<tr>
-<td>__FILE__</td>
-<td>String containing the file name</td>
-</tr>
-<tr>
-<td>__LINE__</td>
-<td>Integer representing the current line number</td>
-</tr>
-<tr>
-<td>__STDC__</td>
-<td>If follows ANSI standard C, then value is a nonzero integer</td>
-</tr>
-<tr>
-<td>__TIME__</td>
-<td>String containing the current date.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Example-3-Get-current-time-using-TIME"><a href="#Example-3-Get-current-time-using-TIME" class="headerlink" title="Example 3: Get current time using TIME"></a>Example 3: Get current time using <strong>TIME</strong></h3><p>以下程序使用<strong>TIME</strong>宏输出当前时间。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"Current time: %s"</span>,__TIME__);   <span class="comment">//calculate the current time</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Output</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Current time: 19:54:39</span><br></pre></td></tr></table></figure>
-<h2 id="引用自"><a href="#引用自" class="headerlink" title="引用自"></a>引用自</h2><blockquote>
-<p><a href="https://www.programiz.com/c-programming/c-preprocessor-macros#example-define" target="_blank" rel="noopener">https://www.programiz.com/c-programming/c-preprocessor-macros#example-define</a></p>
-</blockquote>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/11/C语言-宏/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
