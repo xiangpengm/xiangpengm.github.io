@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[动态规划]]></title>
+    <url>%2F2019%2F04%2F14%2F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%2F</url>
+    <content type="text"><![CDATA[什么是动态规划将问题分成小问题，并优先解决这些小问题. 动态规划先解决子问题，再逐步解决大问题. 举例: 费波那切数列递归费波那切数列实现 12345678910111213def fib(n): if n in (0, 1): return 1 else: return fib(n-1) + fib(n-2)def main(): n = 20 fib(n)if __name__ == "__main__": main() 可以看到上面费波那切数列的递归树存在反复计算子问题的步骤, 随着n的增大递归树会指数扩张.动态规划的优化思路就是去除子问题进而达到提升程序运行效率的目的. 动态规划费波那切数列实现 1234567891011121314151617181920def fib(n, cache): if n in cache: return cache[n] elif n in (0, 1): cache[n] = 1 return cache[n] else: # 存储子问题解 cache[n] = fib(n-1, cache) + fib(n-2, cache) return cache[n]def main(): n = 20 cache = &#123;&#125; fib(n, cache)if __name__ == "__main__": main() 上面的优化思路是使用了一个字典去存储子问题的解, 因此动态规划可以看成一种空间换时间的优化算法, 从两个测试的运行时间可以看出动态规划可以极大提高程序的运行效率. 举例: 背包问题假设你是一个小偷背包中可装4磅的物品. 你可盗窃的商品如下 物品名 价值 重量 音响 3000 4 笔记本电脑 2000 3 吉他 1500 1 方法1: 穷举可以使用尝试各种商品的组合, 并找出价值最高的组合 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748def select_item_by_mask(data, mask): r = [data[index] for (index, value) in enumerate(mask) if value == 1] return rdef int_to_mask(value, length): r = [ (value &gt;&gt; s) &amp; 1 for s in range(length)] return rdef sum_value(data): r = sum((item[1]for item in data)) return rdef sum_weight(data): r = sum((item[2]for item in data)) return rdef backpack(data, pack_size): l = len(data) max_value = 0 zuhe = [] for i in range(2 ** l): # 生成 0 - 2^l的所有排列组合 mask = int_to_mask(i, l) selected = select_item_by_mask(data, mask) total_value = sum_value(selected) total_weight = sum_weight(selected) if total_weight &lt;= pack_size and total_value &gt; max_value: max_value = total_value zuhe = selected return max_value, zuhedef main(): pack_size = 4 name = ['吉他', '音箱', '笔记本'] value = [1500, 3000, 2000] weight = [1, 4, 3] data = list(zip(name, value, weight)) m = backpack(data, pack_size) print(m)if __name__ == "__main__": main() 使用穷举可以解决问题, 但是随着n的增加复杂度会也会出现指数扩张(同费波那切数列未优化前). 方法2: 动态规划把背包分解成小背包, 行为待选的物品(n), 行为子背包的大小(w), 这时初始化了一个n*m的矩阵用于存放子问题的解. 物品 1 2 3 4 吉他 音响 笔记本电脑 矩阵用matrix来表示,行下标用i表示, 列下标用j表示. 当i=0时, 在matrix[0]行时只能选择背包中只能选择吉, 矩阵如下 物品 1 2 3 4 吉他 (1500, 1) (1500, 1) (1500, 1) (1500, 1) 音响 笔记本电脑 当i=1时, 在matrix[1]行可以选择吉他和音箱,因为音箱重量为4所以1-3背包存放不下, 只能继承上一行的数值. 物品 1 2 3 4 吉他 (1500, 1) (1500, 1) (1500, 1) (1500, 1) 音响 (1500, 1) (1500, 1) (1500, 1) (3000, 4) 笔记本电脑 当i=2时, 在matrix[2]行可以选择三个物品, 由于1-2背包依旧只能存放吉他因此还继承上一行的数值, 但3背包可以存放价值为2000的笔记本电脑, 这样3背包存放的最大价值为2000. 物品 1 2 3 4 吉他 (1500, 1) (1500, 1) (1500, 1) (1500, 1) 音响 (1500, 1) (1500, 1) (1500, 1) (3000, 4) 笔记本电脑 (1500, 1) (1500, 1) (2000, 3) 这时在填充matrix[2][3]时存在时可以选择(笔记本+剩余1磅子背包)或者是(音箱) 123000 &lt; (2000 + 1500) 音箱 笔记本电脑 吉他 得到最终矩阵为 物品 1 2 3 4 吉他 (1500, 1) (1500, 1) (1500, 1) (1500, 1) 音响 (1500, 1) (1500, 1) (1500, 1) (3000, 4) 笔记本电脑 (1500, 1) (1500, 1) (2000, 3) (3500,4) 上述的计算过程可以推导出一个方程, matrix中的所有元素都满足这个方程 12345i=0matrix[0][j]= items[0] if items.weight &lt;= 子背包重量 else [0, 0]# 能取到的i&gt;0matrix[i][j] = max(cell[i-1][j], 当前商品价值 + cell[i-1][j-当前商品重量]) 上述方程称为状态转移方程, 推导出状态转移方程动态规划基本也就掌握了. 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556def log_matrix(matrix): for line in matrix: print(line) print()def init_matrix(data, pack_size): matrix = [[[0, 0] for i in range(pack_size)] for _ in data] return matrixdef backpack(data, pack_size): # 状态转移方程 # cell[i][j] = max(cell[i-1][j], i + cell[i-1][j - 当前商品重量] matrix = init_matrix(data, pack_size) cell = matrix for i, line in enumerate(matrix): current_goods = data[i] print("out current goods: ",current_goods) value = current_goods[1] weight = current_goods[2] for j, _ in enumerate(line): child_backpack_size = j + 1 if i == 0: if weight &lt;= child_backpack_size: cell[i][j][0] = value cell[i][j][1] = weight else: a = cell[i-1][j] # b = value + cell if weight &gt; child_backpack_size: b = [0, 0] elif weight == child_backpack_size: b = [value, weight] else: mod = cell[i-1][j - weight] value = mod[0] + value weight = mod[1] + weight b = [value, weight] cell[i][j] = max(a, b, key=lambda x: x[0]) log_matrix(cell) return cell[-1][-1]def main(): pack_size = 4 name = ['吉他', '音箱', '笔记本'] value = [1500, 3000, 2000] weight = [1, 4, 3] data = list(zip(name, value, weight)) m = backpack(data, pack_size) print(m)if __name__ == "__main__": main() 作业: 杨辉三角问题杨辉三角中每个位置随意填写数字, 经过某个数字只能达到下面一层相邻的两个数字.假设你站在第一层, 往下移动, 我们把wids到最底层经过的所有数字之和, 定义为路径的长度. 请求出从最高层移动到最底层的最短路径长度. 123456789101112131415161718# 杨辉三角def triangle(triangle): # triangle = [ # [2], # [3,4], # [6,5,7], # [4,1,8,3] # ] """ 杨辉三角移动的关系 tringle[i][j] tringle[i+1][j] tringle[i+1][j+1] 状态转移方程 dp = [0] * (len(triangle) + 1) dp[j] = triangle[i][j] + min(dp[j], dp[j+1]) """ pass 参考 https://time.geekbang.org/column/article/74788 图解算法 leetcode]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[网络协议]]></title>
+    <url>%2F2019%2F04%2F13%2F%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%2F</url>
+    <content type="text"><![CDATA[网址组成 (https://)(kuaibiancheng.com)()(/questions) 协议 主机 端口 路径 网络传输协议为http一个传输协议，协议就是双方都遵守的规范。为什么叫超文本传输协议，因为收发的是超文本信息。超链接 浏览器(客户端)按照规定的格式发送文本数据(请求)到服务器 服务器解析请求, 按照规定的格式返回文本数据到浏览器 浏览器解析得到的数据, 并做响应处理 请求格式 请求行 请求头 “\r\n\r\n” 请求体 响应格式 响应行 响应头 “\r\n\r\n” 响应体]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git flow]]></title>
+    <url>%2F2019%2F04%2F10%2Fgit-flow%2F</url>
+    <content type="text"><![CDATA[git flow Gitflow工作流程围绕项目发布定义了严格的分支模型。尽管它比Feature Branch Workflow更复杂一些，但它也为管理更大规模的项目提供了坚实的框架。与Feature Branch Workflow比起来，Gitflow流程并没有增加任何新的概念或命令。其特色在于，它为不同的分支分配了非常明确的角色，并且定义了使用场景和用法。除了用于功能开发的分支，它还使用独立的分支进行发布前的准备、记录以及后期维护。当然，你还是能充分利用Feature Branch Workflow的好处：拉拽请求（Pull Request）、隔离的试验以及更高效率的合作。 工作原理: 流程仍然使用一个中央代码仓库，它是所有开发者的信息交流中心。跟其他的工作流程一样，开发者在本地完成开发，然后再将分支代码推送到中央仓库。唯一不同的是项目中分支的结构。 用于记录历史的分支 Gitflow使用两个分支来记录项目开发的历史，而不是使用单f一的master分支。在Gitflow流程中，master只是用于保存官方的发布历史，而develop分支才是用于集成各种功能开发的分支。使用版本号为master上的所有提交打标签（tag）也很方便。 分枝1.master。只有一个，并且不会在master上进行代码的操作。 2.develop。只有一个，新特性的开发是基于develop开发的，但是不能直接在develop上进行开发，而是在基于develop上创建feature分支进行新特性的开发。 3.feature。可以同时存在多个，基于develop分支被创建。对于每一个新的功能可以创建一个新的feature分支，开发结束之后，合并到develop分支即可。 创建一个新的feature分支，命令：git flow feature start name 执行之后，feature/name分支就会被创建。 当新特性开发完成过后，需要合并到develop上，命令:git flow feature finish name 执行之后，feature/name分支的内容就会合并到develop，，并且删除feature/name分支。 4.release分支。release分支是为了发布而存在的分支，基于develop分支被创建。在同一时间只能有一个release分支，在此分支上仅仅是较少代码的修复。否则，容易引起release分支不稳定。当release分支被创建之后，develop分支可能在准备另一个版本的，因此，当release分支merge回develop分支时候可能会出现冲突，需要手工解决冲突。 用git flow feature start 创建一个特性分枝]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>git flow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git常用操作]]></title>
+    <url>%2F2019%2F03%2F29%2Fgit%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[撤销commit回滚到上次提交git reset –hard HEAD^]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>版本管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[socket编程]]></title>
+    <url>%2F2019%2F03%2F29%2Fsocket%E7%BC%96%E7%A8%8B%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Conda配置]]></title>
+    <url>%2F2019%2F03%2F28%2FConda%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>conda</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Makefile]]></title>
+    <url>%2F2019%2F03%2F27%2FMakefile%2F</url>
+    <content type="text"><![CDATA[#]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>Makefile</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C语言-多线程编程]]></title>
     <url>%2F2019%2F03%2F27%2FC%E8%AF%AD%E8%A8%80-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[线程线程（英语：thread）是操作系统能够进行运算调度的最小单位。线程的创建和销毁都是通过操作系统来完成的。 编程模型单进程单线程模型通常编程时使用的是单进程单线程模型，程序在运行时通过操作系统创建一个进程，包含一个主线程，当主线程结束后进程结束，操作系统回收资源。 单进程多线程模型单进程多线程编程是在程序中创建子线程实现，这时创建的线程称为子线程。程序在运行是通过操作系统创建一个进程，包含主线程，主线程会创建子线程来处理任务；但这时主线程结束进程结束，主线程可以通过等待子线程结束再结束主线程退出。 C语言中多线程C语言中通过pthread库来进行多线程程序编写。 pthread_t 声明一个线程ID pthread_create 使用线程ID创建一个线程含有四个参数 ：线程ID（pthread_t）、线程属性(pthread_attr_t)、函数指针[void *(*)(void *)]、参数指针（void *） 123456789101112131415161718192021222324#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;pthread.h&gt;void *thread(void *arg) &#123; int a = *(int *)arg; printf("thread : %d\n", a); return NULL;&#125;intmain(int argc, const char *argv[]) &#123; int count = 10; pthread_t tids[count]; for(size_t i = 0; i &lt; count; i++) &#123; /* code */ int *s = malloc(sizeof(int)); *s = i; pthread_create(&amp;tids[i], NULL, thread, s); &#125; return 0;&#125; 多线程模型中存在的问题多线程模型中，不同线程可以访问同一个变量，不同的线程独立执行，如果同时读写一个变量会造成数据错误，因此在多线程模型中需要加入锁来对变量的安全，通常称为线程安全，加的锁名为互斥锁（mutex）。 测试代码逻辑，拥有一个变量balance，两个操作，存、取，当创建1000个线程时同时运行这两个操作会造成最终balance变量不为0. 不加锁代码 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;pthread.h&gt;static int balance = 0;void *deposit(void *args)&#123; balance += 10; return NULL;&#125;void *withdraw(void *args)&#123; balance -= 10; return NULL;&#125;void multiThread(void)&#123; int n = 1000; pthread_t tid1[n]; pthread_t tid2[n]; for (size_t i = 0; i &lt; n; i++) &#123; pthread_create(&amp;tid1[i], NULL, deposit, NULL); pthread_create(&amp;tid2[i], NULL, withdraw, NULL); &#125; for (size_t i = 0; i &lt; n; i++) &#123; pthread_join(tid1[i], NULL); pthread_join(tid2[i], NULL); &#125;&#125;intmain(int argc, const char *argv[]) &#123; printf("main start, balance %d\n", balance); multiThread(); printf("main end, balance %d\n", balance);&#125; 加锁代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;stdio.h&gt;#include &lt;pthread.h&gt;static int balance = 0;static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;void *deposit(void *args) &#123; // 互斥锁 // 事务 pthread_mutex_lock(&amp;mutex); balance += 10; pthread_mutex_unlock(&amp;mutex); return NULL;&#125;void *withdraw(void *args) &#123; pthread_mutex_lock(&amp;mutex); balance -= 10; pthread_mutex_unlock(&amp;mutex); return NULL;&#125;voidmultiThread(void) &#123; int n = 1000; pthread_t tid1[n]; pthread_t tid2[n]; for (size_t i = 0; i &lt; n; i++) &#123; pthread_create(&amp;tid1[i], NULL, deposit, NULL); pthread_create(&amp;tid2[i], NULL, withdraw, NULL); &#125; for (size_t i = 0; i &lt; n; i++) &#123; pthread_join(tid1[i], NULL); pthread_join(tid2[i], NULL); &#125;&#125;intmain(void) &#123; printf("main start, balance %d\n", balance); multiThread(); printf("main end, balance %d\n", balance); return 0;&#125;]]></content>
